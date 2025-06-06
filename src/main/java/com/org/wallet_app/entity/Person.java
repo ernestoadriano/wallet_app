@@ -17,5 +17,6 @@ public abstract class Person extends BaseEntity{
 
     @Column(nullable = false, unique = true)
     protected String numberIdentityCard;
+
     
 }
