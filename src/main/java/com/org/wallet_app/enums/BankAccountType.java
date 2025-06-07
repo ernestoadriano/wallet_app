@@ -1,4 +1,4 @@
-package com.org.wallet_app.entity;
+package com.org.wallet_app.enums;
 
 public enum BankAccountType {
 

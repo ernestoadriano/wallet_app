@@ -1,6 +1,7 @@
 package com.org.wallet_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.org.wallet_app.enums.BankAccountType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +13,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class BankAccount extends BaseEntity{
-
-    @Column(nullable = false, unique = false)
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String accountNumber;
 
     @Column(name = "balance")
     private BigDecimal balance;

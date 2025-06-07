@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 @Getter
 @NoArgsConstructor
 public class Client extends Person{

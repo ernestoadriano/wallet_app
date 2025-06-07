@@ -36,7 +36,7 @@ public class ClientService {
                 .orElseThrow(() -> new RuntimeException("Client not founded!"));
     }
     public ResponseEntity<?> insert(ClientRequest dto) {
-        if (clientRepository.findByNumberIdentityCard(dto.numberIdentityCard()).isEmpty())
+        if (clientRepository.findByNumberIdentityCard(dto.numberIdentityCard()).isPresent())
             return ResponseEntity.badRequest().body("This number identity card already exists.");
 
         Client client = new Client();
