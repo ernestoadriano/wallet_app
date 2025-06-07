@@ -2,12 +2,14 @@ package com.org.wallet_app.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class Person extends BaseEntity{
 
     @Column(nullable = false)
@@ -18,5 +20,6 @@ public abstract class Person extends BaseEntity{
     @Column(nullable = false, unique = true)
     protected String numberIdentityCard;
 
-    
+    @Column(name = "phone_number", nullable = false, unique = true)
+    private String phoneNumber;
 }
