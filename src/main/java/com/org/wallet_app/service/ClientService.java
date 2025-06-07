@@ -31,6 +31,10 @@ public class ClientService {
         return ResponseEntity.ok(clientRepository.findAll(sort));
     }
 
+    public Client getByNumberIdentityCard(String numberIdentityCard) {
+        return clientRepository.findByNumberIdentityCard(numberIdentityCard)
+                .orElseThrow(() -> new RuntimeException("Client not founded!"));
+    }
     public ResponseEntity<?> insert(ClientRequest dto) {
         if (clientRepository.findByNumberIdentityCard(dto.numberIdentityCard()).isEmpty())
             return ResponseEntity.badRequest().body("This number identity card already exists.");

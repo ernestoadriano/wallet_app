@@ -1,6 +1,7 @@
 package com.org.wallet_app.controller;
 
 import com.org.wallet_app.dto.ClientRequest;
+import com.org.wallet_app.entity.Client;
 import com.org.wallet_app.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,11 @@ public class ClientController {
     @GetMapping("/")
     public ResponseEntity<?> getAll() {
         return clientService.getAll();
+    }
+
+    @GetMapping("/{numCard}")
+    public Client getByNumberIdentityCard(@PathVariable("numCard") String numberIdentityCard) {
+        return clientService.getByNumberIdentityCard(numberIdentityCard);
     }
 
     @PostMapping("/")
