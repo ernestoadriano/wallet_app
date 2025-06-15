@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "bank_accounts")
@@ -24,6 +25,7 @@ public class BankAccount extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private BankAccountType bankAccountType;
+
 
     public void debit(BigDecimal value) {
         setBalance(getBalance().subtract(value));

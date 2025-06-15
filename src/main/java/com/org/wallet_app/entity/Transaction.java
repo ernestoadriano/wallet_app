@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @Setter
 public class Transaction extends BaseEntity{
 
+    
     @ManyToOne
     @JoinColumn(name = "payer")
     private BankAccount payer;
@@ -19,6 +20,9 @@ public class Transaction extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "payee")
     private BankAccount payee;
+
+    @Enumerated(EnumType.STRING)
+    private TypeTransaction typeTransaction;
 
     @Column(nullable = false)
     private BigDecimal value;
