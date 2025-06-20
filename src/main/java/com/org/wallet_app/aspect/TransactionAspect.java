@@ -19,7 +19,8 @@ public class TransactionAspect {
     @Autowired
     private BankAccountRepository accountRepository;
 
-    @Around("@annotation(jakarta.transaction.Transactional) && execution(* com.org.wallet_app.service.Transaction.*(..))")
+    @Around("@annotation(jakarta.transaction.Transactional) " +
+            "&& execution(* com.org.wallet_app.service.TransactionService.*(..))")
     public void verifyCredentialForTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] object = joinPoint.getArgs();
 
@@ -35,11 +36,11 @@ public class TransactionAspect {
             validateAccount(payer, payee);
 
             if (dto.value().compareTo(BigDecimal.ZERO) <= 0) {
-                throw new RuntimeException("You don't have balance");
+                throw new IllegalArgumentException("The is must be bigger than zero.");
             }
 
             if (dto.value().compareTo(payer.getBalance()) > 0) {
-                throw new IllegalArgumentException("The is must be bigger than zero.");
+                throw new IllegalArgumentException("You don't have balance");
             }
 
             joinPoint.proceed();
