@@ -30,4 +30,8 @@ public class BankAccount extends BaseEntity{
     public void debit(BigDecimal value) {
         setBalance(getBalance().subtract(value));
     }
+
+    public void credit(BigDecimal value) {
+        setBalance(getBalance().add(value));
+    }
 }

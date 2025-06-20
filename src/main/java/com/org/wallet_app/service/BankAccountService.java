@@ -39,6 +39,7 @@ public class BankAccountService {
         return ResponseEntity.ok("Account created with success!");
     }
 
+
     public ResponseEntity<?> getAll() {
 
         if (accountRepository.findAll().isEmpty())

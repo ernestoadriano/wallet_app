@@ -10,5 +10,4 @@ public class WalletAppApplication {
 		SpringApplication.run(WalletAppApplication.class, args);
 		System.out.println("RUNNING!!!");
 	}
-
 }
