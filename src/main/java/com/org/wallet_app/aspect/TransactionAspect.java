@@ -2,6 +2,7 @@ package com.org.wallet_app.aspect;
 
 import com.org.wallet_app.dto.TransactionDTO;
 import com.org.wallet_app.entity.BankAccount;
+import com.org.wallet_app.exception.InvalidTransactionException;
 import com.org.wallet_app.repository.BankAccountRepository;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -28,19 +29,19 @@ public class TransactionAspect {
             TransactionDTO dto = (TransactionDTO) object[0];
 
             BankAccount payer = accountRepository.findById(dto.payer().getId())
-                    .orElseThrow(() -> new RuntimeException("Not founded"));
+                    .orElseThrow(() -> new InvalidTransactionException("Not founded"));
 
             BankAccount payee = accountRepository.findById(dto.payee().getId())
-                    .orElseThrow(() -> new RuntimeException("Not founded"));
+                    .orElseThrow(() -> new InvalidTransactionException("Not founded"));
 
             validateAccount(payer, payee);
 
             if (dto.value().compareTo(BigDecimal.ZERO) <= 0) {
-                throw new IllegalArgumentException("The is must be bigger than zero.");
+                throw new InvalidTransactionException("The is must be bigger than zero.");
             }
 
             if (dto.value().compareTo(payer.getBalance()) > 0) {
-                throw new IllegalArgumentException("You don't have balance");
+                throw new InvalidTransactionException("You don't have balance");
             }
 
             joinPoint.proceed();
@@ -49,7 +50,7 @@ public class TransactionAspect {
 
     private void validateAccount(BankAccount payer, BankAccount payee) {
         if (Objects.equals(payer.getId(), payee.getId())) {
-            throw new RuntimeException("The account is equals");
+            throw new InvalidTransactionException("The account is equals");
         }
     }
 }
