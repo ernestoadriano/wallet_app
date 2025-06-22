@@ -2,6 +2,7 @@ package com.org.wallet_app.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,4 +19,7 @@ public class Client extends Person{
 
     @OneToMany(mappedBy = "client")
     private List<BankAccount> accounts;
+
+    @OneToOne(mappedBy = "client")
+    private Residence residence;
 }

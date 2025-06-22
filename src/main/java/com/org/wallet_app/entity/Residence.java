@@ -1,8 +1,7 @@
 package com.org.wallet_app.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +16,12 @@ public class Residence extends BaseEntity{
 
     @Column(name = "number_house", nullable = false)
     private String numberHouse;
+
+    @JsonBackReference
+    @OneToOne
+    @JoinColumn(name = "client_id", insertable = false, updatable = false)
+    private Client client;
+
+    @Column(name = "client_id")
+    private Long clientId;
 }

@@ -3,6 +3,7 @@ package com.org.wallet_app.service;
 import com.org.wallet_app.dto.ClientRequest;
 import com.org.wallet_app.entity.Client;
 import com.org.wallet_app.repository.ClientRepository;
+import com.org.wallet_app.repository.ResidenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private ResidenceRepository residenceRepository;
 
     private Client getById(Long id) {
         return clientRepository.findById(id)

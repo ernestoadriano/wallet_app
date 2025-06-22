@@ -1,15 +1,13 @@
 package com.org.wallet_app.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@MappedSuperclass
-@Getter
-@Setter
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Person extends BaseEntity{
 
     @Column(nullable = false)
